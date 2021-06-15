@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary()
         table.string('name').notNull()
         table.string('type').notNull()//tipo da maquina
-        table.decimal('opCost').notNull()//custo operacional
-        table.integer('ownerId').references('id')
+        table.decimal('op_cost').notNull()//custo operacional
+        table.integer('owner_id').references('id')
             .inTable('users').notNull()
     })
   

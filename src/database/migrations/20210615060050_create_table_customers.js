@@ -2,7 +2,7 @@
 // se der tempo 
 exports.up = function(knex, Promise) { 
     return knex.schema.createTable('customers', table =>{
-        table.integer('customerId').references('id')
+        table.integer('customer_id').references('id')
             .inTable('users')
     })
   

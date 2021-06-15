@@ -5,11 +5,11 @@ exports.up = function(knex, Promise) {
         table.decimal('price').notNull()
         table.string('description', 1000)
         table.string('weight').notNull()
-        table.decimal('timeToPrint').notNull()
-        table.integer('colorId').references('id')
+        table.decimal('time_to_print').notNull()
+        table.integer('color_id').references('id')
             .inTable('colors').notNull()
-        table.string('textPosition').notNull()
-        table.integer('typeFont').references('id').inTable('fonts')
+        table.string('text_position').notNull()
+        table.integer('type_font').references('id').inTable('fonts')
 
 
 
