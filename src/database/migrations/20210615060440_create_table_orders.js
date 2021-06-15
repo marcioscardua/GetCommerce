@@ -1,10 +1,10 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('orders', table => {
         table.increments('id').primary()
-        table.integer('customerId').references('id')
+        table.integer('customer_id').references('id')
             .inTable('users').notNull()
-        table.string('cepDelivery').notNull()
-        table.integer('productId').references('id')
+        table.string('cep_delivery').notNull()
+        table.integer('product_id').references('id')
             .inTable('products').notNull()
         table.string('status')
     })
