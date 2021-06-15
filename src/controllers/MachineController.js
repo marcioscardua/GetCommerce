@@ -1,24 +1,25 @@
 const knex = require('../database')
 
-
 module.exports = {
 
     async list(req, res){
 
         //fazer um paginacao com o status de pagina
         
-        const results = await knex('products')
+        //Fazer o join do owner
+        
+        const results = await knex('machines')
 
         return res.json(results)
 
     },
     async create(req, res, next){
         try {
-            const product = {...req.body}
+            const machine = {...req.body}
 
             //validar
             
-            await knex('products').insert(product)
+            await knex('machines').insert(machine)
 
             return res.status(201).send()
         } catch (error) {
@@ -27,31 +28,13 @@ module.exports = {
     },
     async update(req, res, next){
         try {
-            const newproduct = {...req.body}
+            const newmachine = {...req.body}
             const {id} = req.params
             //console.log(req.query.pronto)
             //console.log(req.query.final)
-            await knex('products').update(newproduct).where({id})
+            await knex('machines').update(newmachine).where({id})
           
             res.send()
-        } catch (error) {
-            next(error)
-        }
-    },
-    async updateQuery(req, res, next){
-        try {
-            const newproduct = {...req.body}
-            const id = req.query.id
-            const flag = req.query.pronto
-           
-            if(flag == 1){
-                await knex('products').update(newproduct).where({id})
-                res.send()
-            }else{
-                res.send('NaoPronto')
-            }        
-          
-            
         } catch (error) {
             next(error)
         }
@@ -59,8 +42,9 @@ module.exports = {
     async delete(req, res, next){
         try {
             const id = req.params.id
-
-            await knex('products').where({id}).del()
+            
+            
+            await knex('machines').where({id}).del()
 
             return res.send()
         } catch (error) {

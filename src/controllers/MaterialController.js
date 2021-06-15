@@ -1,24 +1,25 @@
 const knex = require('../database')
 
-
 module.exports = {
 
     async list(req, res){
 
         //fazer um paginacao com o status de pagina
         
-        const results = await knex('products')
+        //Fazer o join da cor
+        
+        const results = await knex('material')
 
         return res.json(results)
 
     },
     async create(req, res, next){
         try {
-            const product = {...req.body}
+            const material = {...req.body}
 
             //validar
             
-            await knex('products').insert(product)
+            await knex('material').insert(material)
 
             return res.status(201).send()
         } catch (error) {
@@ -27,31 +28,13 @@ module.exports = {
     },
     async update(req, res, next){
         try {
-            const newproduct = {...req.body}
+            const newmaterial = {...req.body}
             const {id} = req.params
             //console.log(req.query.pronto)
             //console.log(req.query.final)
-            await knex('products').update(newproduct).where({id})
+            await knex('material').update(newmaterial).where({id})
           
             res.send()
-        } catch (error) {
-            next(error)
-        }
-    },
-    async updateQuery(req, res, next){
-        try {
-            const newproduct = {...req.body}
-            const id = req.query.id
-            const flag = req.query.pronto
-           
-            if(flag == 1){
-                await knex('products').update(newproduct).where({id})
-                res.send()
-            }else{
-                res.send('NaoPronto')
-            }        
-          
-            
         } catch (error) {
             next(error)
         }
@@ -59,8 +42,11 @@ module.exports = {
     async delete(req, res, next){
         try {
             const id = req.params.id
+            
 
-            await knex('products').where({id}).del()
+            //tratar a exclusaso pois material relaciona com products
+            
+            await knex('material').where({id}).del()
 
             return res.send()
         } catch (error) {
