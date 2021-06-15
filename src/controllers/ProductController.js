@@ -6,6 +6,8 @@ const { update } = require('./UserController')
 module.exports = {
 
     async index(req, res){
+
+        //fazer um paginacao com o status de pagina
         
         const results = await knex('products')
 

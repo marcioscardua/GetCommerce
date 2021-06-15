@@ -1,8 +1,10 @@
 const express = require('express')
 const routes = require('./routes')
-const md = require('./middleware')
+const cors = require('cors')
 const app = express()
 
+
+app.use(cors())
 app.use(express.json())
 app.use(routes )
 //app.use(md)
@@ -22,5 +24,4 @@ app.use((error, req, res, next) => {
 
 })
 
-app.get(console.log('Teste'))
 app.listen(4000, () => console.log('Servidor 3DMate'))
