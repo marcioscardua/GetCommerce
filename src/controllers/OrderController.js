@@ -18,6 +18,7 @@ module.exports = {
             const order = {...req.body}
 
             //validar
+          
             
             await knex('orders').insert(order)
 

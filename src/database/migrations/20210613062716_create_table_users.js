@@ -12,6 +12,7 @@ exports.up = function(knex, Promise) {
         table.boolean('type_user').notNull().defaultTo(false) //false fabricante true comprador
         table.timestamp('created_at').defaultTo(knex.fn.now())
         table.timestamp('updated_at').defaultTo(knex.fn.now())
+        table.timestamp('deleted_at').defaultTo(null)
        
     }).then(()=>knex.raw(updateTrigger('users')))
   
