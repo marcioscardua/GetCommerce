@@ -25,12 +25,6 @@ module.exports = {
         try{
             const user = {...req.body}
 
-            //console.log(user.first_name)
-
-           // if(user.first_name == undefined)
-
-            //throw error
-
             validator.existsOrError(user.first_name, 'Nome não informado.' )
             validator.existsOrError(user.last_name, 'Sobrenome não informado.' )
             validator.existsOrError(user.email, 'E-mail não informado.' )

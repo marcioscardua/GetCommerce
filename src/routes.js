@@ -7,6 +7,12 @@ const FontController = require('./controllers/FontController')
 const MaterialController = require('./controllers/MaterialController')
 const MachineController = require('./controllers/MachineController')
 const OrderController = require('./controllers/OrderController')
+const Validate = require('./controllers/ValidateController')
+
+//Global ---
+routes.post('/signin', Validate.signin)
+routes.post('/signup', UserController.create)
+routes.post('/validateToken', Validate.validateToken)
 
 //Users Routes
 routes.get('/users', UserController.list )
