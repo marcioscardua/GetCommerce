@@ -52,6 +52,18 @@ module.exports = {
         try {
             const user = {...req.body}
             const {id} = req.params
+
+            validator.existsOrError(user.first_name, 'Nome não informado.' )
+            validator.existsOrError(user.last_name, 'Sobrenome não informado.' )
+            validator.existsOrError(user.email, 'E-mail não informado.' )
+            validator.existsOrError(user.password, 'Senha não informado.' )    
+            validator.existsOrError(user.cep, 'CEP não informado.' )
+            validator.adressCep(user.cep)//uma promise
+
+            const userInsideDB = await knex('users').where({email: user.email}).first()
+
+            validator.notExistsOrError(userInsideDB, "E-mail já cadastrado.")
+
             user.password =  encryptPassword(user.password)
 
             await knex('users').update(user).where({id})
@@ -65,11 +77,7 @@ module.exports = {
         try {
            const {id} = req.params
            
-           //validar
-           let cont = id
-
            await knex('users').update({deleted_at: new Date()}).where({id})
-
 
            return res.send({id})
         } catch (error) {
