@@ -76,6 +76,7 @@ routes.delete('/machines/:id', MachineController.delete)
 //Order Routes
 //routes.all('/orders', auth.authenticate())
 routes.get('/orders',OrderController.list )
+routes.get('/orders/frete',OrderController.valueDelivery)
 routes.post('/orders', OrderController.create)
 
 //routes.all('/orders/:id', auth.authenticate())

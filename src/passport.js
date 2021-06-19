@@ -22,6 +22,5 @@ const strategy = new Strategy(params, (payload, done) =>{
 passport.use(strategy)
 
 module.exports = {
-
     authenticate: () => passport.authenticate('jwt', {session:false})
 }

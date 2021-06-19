@@ -30,7 +30,7 @@ module.exports = {
             validator.existsOrError(user.email, 'E-mail não informado.' )
             validator.existsOrError(user.password, 'Senha não informado.' )    
             validator.existsOrError(user.cep, 'CEP não informado.' )
-            validator.adressCep(user.cep)//uma promise
+            validator.adressCep(user.cep)
 
             const userInsideDB = await knex('users').where({email: user.email}).first()
 
@@ -40,8 +40,8 @@ module.exports = {
 
             await knex('users').insert(user)
             //return res.status(201).send()
-          
-            return res.json({Criado: true})
+            console.log({id: "1", last_name: user.last_name})
+            return res.status(201).json({id: "1", last_name: user.last_name})
            
        }catch(error){
             res.status(400).json({erro: error})
