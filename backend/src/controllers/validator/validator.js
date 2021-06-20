@@ -30,48 +30,22 @@ module.exports = {
 
     //Consulta uma api que retorna o restante das informacoes
      async adressCep(input, error) {
-
         //enviar pelo  body
         const cep_restrito = "79070-295"
-
         try {
             const cep =  await axios.get(`http://viacep.com.br/ws/${input}/json/`).then(function (response) {
                 if(!response.data.cep){
+                    throw error                    
+                }if(response.data.cep === cep_restrito){
                     console.log(response.data.cep)
-                    throw error
-                     
+                    error =  "Impossivel realizar o envio para seu CEP."
+                    throw error                     
                 }else{
-                    return 
-                    
+                    return
                 }
-
-            })
-            
+            })       
         } catch (error) {
             throw error
         }
-   
-     
-             
-            //     if (response.data.cep === undefined) {
-            //         console.log(response.data.cep)
-            //         throw error
-    
-            //         //console.log("CEP não existe")
-            //     }else{
-            //         console.log(response.data)
-            //         return
-            //     }   
-            // })
-
-            //const cep =  await axios.get(`http://viacep.com.br/ws/${input}/json/`)
-            // .then(cep => {
-                
-           
-
-            //console.log(cep)
-
-          
-      
     }
 }

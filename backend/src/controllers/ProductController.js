@@ -17,10 +17,11 @@ module.exports = {
             const product = {...req.body}
 
             //validar
+            console.log(product)
             
             await knex('products').insert(product)
 
-            return res.status(201).send()
+            return res.status(201).send('Criado')
         } catch (error) {
             next(error)
         }

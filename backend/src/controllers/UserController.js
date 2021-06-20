@@ -51,12 +51,13 @@ module.exports = {
         try {
             const user = {...req.body}
             const {id} = req.params
-
+console.log("TEste")
             validator.existsOrError(user.first_name, 'Nome não informado.' )
             validator.existsOrError(user.last_name, 'Sobrenome não informado.' )
             validator.existsOrError(user.email, 'E-mail não informado.' )
             validator.existsOrError(user.password, 'Senha não informado.' )    
             validator.existsOrError(user.cep, 'CEP não informado.' )
+            await validator.adressCep(user.cep, 'CEP Inválido')
             
 
             const userInsideDB = await knex('users').where({email: user.email}).first()
