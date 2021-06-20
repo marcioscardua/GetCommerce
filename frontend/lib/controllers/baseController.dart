@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class WebService {
   var status;
   var token;
-  String serverUrlproducts = "http://192.168.2.10:3000/products";
+  String serverUrlproducts = "http://192.168.2.10:4000/products";
 
   //Metodos Produtos
   void addProduct(String _nameController,
@@ -23,7 +23,8 @@ class WebService {
 
     String myUrl = "http://192.168.2.10:4000/products";
     final response = await http.post(Uri.parse(myUrl), headers: {
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
     }, body: {
       "name": "$_nameController",
       "price": "$_priceController",
@@ -51,7 +52,7 @@ class WebService {
     final key = 'token';
     final value = prefs.get(key) ?? 0;
 
-    String myUrl = "$serverUrlproducts";
+    String myUrl = "http://192.168.2.10:4000/products";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $value'
@@ -67,7 +68,10 @@ class WebService {
 
 
     String myUrl = "http://192.168.2.10:4000/products/$id";
-    http.put(Uri.parse(myUrl), body: {
+    http.put(Uri.parse(myUrl),  headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    } , body: {
     "name": "$name",
     "price": "$price",
     "description": "$description",
@@ -83,9 +87,14 @@ class WebService {
 
   Future<void> removeProduct(String id) async {
     String myUrl = "http://192.168.2.10:4000/products/$id";
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final value = prefs.get(key) ?? 0;
 
-    Response res = await http.delete(Uri.parse(myUrl));
-    print(id);
+    Response res = await http.delete(Uri.parse(myUrl),  headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    });
 
     if (res.statusCode == 200) {
       print("DELETED");

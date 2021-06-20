@@ -2,6 +2,7 @@ import 'package:getcommerce/controllers/baseController.dart';
 import 'package:getcommerce/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getcommerce/view/listProducts.dart';
 
 class AddDataProduct extends StatefulWidget {
   AddDataProduct({Key key, this.title}) : super(key: key);
@@ -11,20 +12,7 @@ class AddDataProduct extends StatefulWidget {
   _AddDataProductState createState() => _AddDataProductState();
 }
 
-class SnackBarDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SnackBar Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('SnackBar Demo'),
-        ),
-        body: AddDataProduct(),
-      ),
-    );
-  }
-}
+
 
 class _AddDataProductState extends State<AddDataProduct> {
   WebService webService = new WebService();
@@ -41,7 +29,7 @@ class _AddDataProductState extends State<AddDataProduct> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Adicionar Produtos',
+      //title: 'Adicionar Produtos',
       theme: ThemeData(
         primaryColor: Colors.lightGreen,
       ),
@@ -177,7 +165,7 @@ class _AddDataProductState extends State<AddDataProduct> {
                           _fontController.text.trim(),
                           _descriptionController.text.trim());
                       Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => new MainPage(),
+                        builder: (BuildContext context) => new ListProducts(),
                       ));
                     } else {
                       //_infoController = "Atenção aos campos Obrigatórios!"

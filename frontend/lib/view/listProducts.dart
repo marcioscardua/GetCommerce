@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:getcommerce/view/detailProduct.dart';
+import 'package:getcommerce/controllers/baseController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListProducts extends StatefulWidget {
   @override
@@ -13,17 +15,15 @@ class ListProducts extends StatefulWidget {
 
 class _ListProductsState extends State<ListProducts> {
   List data; // Para colocar os dados em uma lista
+  WebService webService = new WebService();
 
-  Future<List> getData() async {
-    final response = await http.get(Uri.parse("http://192.168.2.10:4000/products"));
-    return json.decode(response.body);
-  }
+
 
   @override
   void initState() {
     super.initState();
     //faz um get no servidor e traz os dados
-    this.getData();
+    webService.getData();
   }
 
   @override
@@ -33,7 +33,7 @@ class _ListProductsState extends State<ListProducts> {
         title: new Text("Produtos"),
       ),
       body: new FutureBuilder<List>(
-        future: getData(),
+        future: webService.getData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
           //Analisa se o getData trouxe inofrmcaoes caso contratio coloca um circularProgress

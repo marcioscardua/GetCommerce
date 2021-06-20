@@ -6,6 +6,7 @@ import 'package:getcommerce/view/listProducts.dart';
 import 'package:getcommerce/view/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:getcommerce/view/verificaCep.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -146,9 +147,9 @@ class _MainPageState extends State<MainPage> {
                   title: new Text("Verificar CEP"),
                   trailing: new Icon(Icons.streetview),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => AddDataProduct(),
+                    builder: (BuildContext context) => verificaCep(),
                   )),
-                  enabled: false,
+                  enabled: true,
                 ),
                 new ListTile(
                   title: new Text("Calcular Frete"),
