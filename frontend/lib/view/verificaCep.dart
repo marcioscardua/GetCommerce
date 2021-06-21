@@ -32,7 +32,7 @@ class _VerificaCepState extends State<verificaCep> {
       return "";
     }
 
-    http.Response response = await http.get(Uri.parse("http://192.168.2.10:4000/verifica-cep/${cep}"), headers: {
+    http.Response response = await http.get(Uri.parse("http://192.168.2.12:4000/verifica-cep/${cep}"), headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $value'
     });

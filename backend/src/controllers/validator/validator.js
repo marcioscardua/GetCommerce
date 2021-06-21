@@ -31,7 +31,7 @@ module.exports = {
     //Consulta uma api que retorna o restante das informacoes
      async adressCep(input, error) {
         //enviar pelo  body
-        const cep_restrito = "79070-295"
+        const cep_restrito = "79070-291"
         try {
             const cep =  await axios.get(`http://viacep.com.br/ws/${input}/json/`).then(function (response) {
                 if(!response.data.cep){

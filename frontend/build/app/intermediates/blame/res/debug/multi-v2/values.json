@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\marci\\Desktop\\faculdade\\SD\\App\\GetCommerce\\frontend\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\marci\\Downloads\\sem-bug\\GetCommerce-master\\frontend\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\marci\\Desktop\\faculdade\\SD\\App\\GetCommerce\\frontend\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\marci\\Downloads\\sem-bug\\GetCommerce-master\\frontend\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
-                        "startOffsets": "57",
+                        "startOffsets": "55",
                         "endLines": "6",
                         "endColumns": "12",
-                        "endOffsets": "353"
+                        "endOffsets": "347"
                     },
                     "to": {
                         "startLines": "78",

@@ -24,6 +24,7 @@ module.exports = {
     async create(req, res, next){
         try{
             const user = {...req.body}
+            console.log(user)
 
             validator.existsOrError(user.first_name, 'Nome não informado.' )
             validator.existsOrError(user.last_name, 'Sobrenome não informado.' )
@@ -51,7 +52,7 @@ module.exports = {
         try {
             const user = {...req.body}
             const {id} = req.params
-console.log("TEste")
+
             validator.existsOrError(user.first_name, 'Nome não informado.' )
             validator.existsOrError(user.last_name, 'Sobrenome não informado.' )
             validator.existsOrError(user.email, 'E-mail não informado.' )

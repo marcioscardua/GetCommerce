@@ -9,13 +9,16 @@ const MachineController = require('./controllers/MachineController')
 const OrderController = require('./controllers/OrderController')
 const Validate = require('./controllers/ValidateController')
 const auth = require('./passport')
+const CepController = require('./controllers/CepController')
 
 
 //Global ---
 routes.post('/signin', Validate.signin)
 routes.post('/signup', UserController.create)
 routes.post('/validateToken', Validate.validateToken)
-
+//CEP
+//routes.all('/verifica-cep/:cep', auth.authenticate())
+routes.get('/verifica-cep/:cep', CepController.seachCep )
 
 //Users Routes
 //routes.all('/users', auth.authenticate())

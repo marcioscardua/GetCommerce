@@ -1,8 +1,12 @@
 import 'dart:convert';
 
 
+import 'package:getcommerce/view/addMachine.dart';
 import 'package:getcommerce/view/addProducts.dart';
+import 'package:getcommerce/view/addUsers.dart';
+import 'package:getcommerce/view/listMachines.dart';
 import 'package:getcommerce/view/listProducts.dart';
+import 'package:getcommerce/view/listUsers.dart';
 import 'package:getcommerce/view/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +44,7 @@ class _MainPageState extends State<MainPage> {
 
     //Fazer uma dashboard
 
-    final response = await http.get(Uri.parse("http://192.168.2.10:4000/products"));
+    final response = await http.get(Uri.parse("http://192.168.2.12:4000/products"));
     debugPrint(response.body);
     return json.decode(response.body);
   }
@@ -81,7 +85,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
-      body: Center(child: Text("Dashboard")),
+      body: Center(  ),
       drawer:     Drawer(
         child: new ListView(
               children: <Widget>[
@@ -103,17 +107,17 @@ class _MainPageState extends State<MainPage> {
                   title: new Text("Lista de Usuários"),
                   trailing: new Icon(Icons.list),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => ListProducts(),
+                    builder: (BuildContext context) => ListUsers(),
                   )),
-                  enabled: false,
+                  enabled: true,
                 ),
                 new ListTile(
                   title: new Text("Lista de Máquinas"),
                   trailing: new Icon(Icons.list),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => ListProducts(),
+                    builder: (BuildContext context) => ListMachines(),
                   )),
-                  enabled: false,
+                  enabled: true,
                 ),
 
                  new Divider(),
@@ -130,17 +134,17 @@ class _MainPageState extends State<MainPage> {
                   title: new Text("Adicionar Usuários"),
                   trailing: new Icon(Icons.add_box_outlined),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => AddDataProduct(),
+                    builder: (BuildContext context) => AddDataUser(),
                   )),
-                  enabled: false,
+                  enabled: true,
                 ),
                 new ListTile(
                   title: new Text("Adicionar Máquinas"),
                   trailing: new Icon(Icons.add_box_outlined),
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => AddDataProduct(),
+                    builder: (BuildContext context) => AddDataMachine(),
                   )),
-                  enabled: false,
+                  enabled: true,
                 ),
                 new Divider(),
                 new ListTile(
